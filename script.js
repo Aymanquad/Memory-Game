@@ -24,13 +24,12 @@ main_div.addEventListener('click' , (e)=>{
 
     if(clicked_card.contains('card-front')){
         
-        const number = e.target.textContent ;
-        console.log(e.target.textContent);
-        console.log(e.target.parentNode.children[1] );
+        const number = e.target.textContent ; 
 
         if(clicked_card.contains('reverse-flip')){
-            clicked_card.remove('reverse-flip');
+            clicked_card.remove('reverse-flip');              //wasn't flipping earlier
         }
+
         clicked_card.add('flip' ,  `card-back${number}`);
 
         flipped_cards.push(clicked_card.value);
@@ -120,21 +119,37 @@ const check = ()=>{
 }
 
 
+//buttons
 const resetButton = document.getElementById('reset-button');
+const newGameButton =  document.getElementById('new-game-button');
+
 
 resetButton.addEventListener('click', (e) => {
     console.log("reset btn was clicked");
 
-    // cards =[];
+    location.reload();
 
-    // initial_cards.forEach(initialCard => {
-    //     cards.push(initialCard.cloneNode(true));
-    // });
+});
 
-    // cards = document.getElementsByClassName('card-item');
-    // flipped_cards = [];
 
+newGameButton.addEventListener('click', (e) => {
+    console.log("reset btn was clicked");
     // Reload the page
+    let something = 1;
+
+    // Check if 'something' is already stored in localStorage
+    const storedValue = localStorage.getItem('something');
+
+    // If storedValue is not null, use it; otherwise, use the initial value
+    something = storedValue !== null ? parseInt(storedValue) : something;
+
+    console.log(something);
+
+    something++;
+
+    // Store the updated 'something' in localStorage
+    localStorage.setItem('something', something.toString());
+
     location.reload();
 
 });
