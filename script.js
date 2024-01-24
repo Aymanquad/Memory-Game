@@ -2,13 +2,19 @@ const main_div = document.getElementById('memory-game');
 let cards = document.getElementsByClassName('card-item');
 
 let n = 0;
-// let repeat = [];
+let clickable = true;
 let guesses = 0;
 let flipped_cards = [];
+let flipped_cards_data = [];
+
 
 const initial_cards = [...cards].map(card => card.cloneNode(true));
 
+
 main_div.addEventListener('click' , (e)=>{
+    if (!clickable) {
+        return; // Ignore clicks when not clickable
+    }
 
     const clicked_card = e.target.classList ;
     // const clicked_card_parent = e.target.parentNode ;
@@ -20,16 +26,22 @@ main_div.addEventListener('click' , (e)=>{
 
         flipped_cards.push(clicked_card.value);
 
+        flipped_cards_data.push(number);
+        e.target.textContent = '';
 
         n = n + 1;
         if(n%2 === 0){     // 2 cards are flipped 
             console.log("2 flipped");
-
+            clickable = false;
             check();//function_call 
         }
     }
     }
 )
+
+const enableClick = () => {
+    clickable = true; // Enable clickability
+};
 
 
 const new_game_check = (card , num)=>{
@@ -49,8 +61,6 @@ const new_game_check = (card , num)=>{
             num = num%12;
         }
     }
-
-
 
 
         if(card.contains('reverse-flip')){
@@ -117,6 +127,8 @@ const check = ()=>{
 
 
         flipped_cards= [];
+        flipped_cards_data=[];
+
     }
     else{                                                             //not matching
         guesses += 1;
@@ -126,10 +138,12 @@ const check = ()=>{
             for(i in cards){
                 if(cards[i].classList){
                     if(cards[i].classList.contains(`card-back${match1}`)){
+                        cards[i].innerHTML = flipped_cards_data[0];
                         cards[i].classList.add('reverse-flip');
                         cards[i].classList.remove( `card-back${match1}` ,'flip');
                     }
                     if(cards[i].classList.contains(`card-back${match2}`)){
+                        cards[i].innerHTML = flipped_cards_data[1];
                         cards[i].classList.add('reverse-flip' );
                         cards[i].classList.remove(`card-back${match2}` ,'flip');
                     }
@@ -137,10 +151,13 @@ const check = ()=>{
             }
 
             flipped_cards= [];
+            flipped_cards_data=[];
 
-        } , 1500);
+        } , 1300);
         
     }
+    setTimeout(enableClick, 1500);
+
 }
 
 
