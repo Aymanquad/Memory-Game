@@ -16,8 +16,11 @@ main_div.addEventListener('click' , (e)=>{
     if(clicked_card.contains('card-front')){
         const number = e.target.textContent ; 
         
-        new_game_check(clicked_card , number);      //func()
-
+        if(card.contains('reverse-flip')){
+            card.remove('reverse-flip');              //wasn't flipping earlier
+        }
+        console.log("number is ...",num);
+        card.add('flip' ,  `card-back${num}`);
         flipped_cards.push(clicked_card.value);
 
 
@@ -30,40 +33,6 @@ main_div.addEventListener('click' , (e)=>{
     }
     }
 )
-
-
-const new_game_check = (card , num)=>{
-
-    let something_value = localStorage.getItem('something');
-
-    let something_number = parseInt(something_value) || 0;
-
-    if(something_value !== null && something_value > 1){
-        console.log("sheessh");
-        something_number = parseInt(something_value) || 0;
-
-        num = parseInt(num) + something_number;
-        console.log("number earlier is ...",num);
-
-        if(num>12){
-            num = num%12;
-        }
-    }
-
-
-
-
-        if(card.contains('reverse-flip')){
-            card.remove('reverse-flip');              //wasn't flipping earlier
-        }
-        console.log("number is ...",num);
-        card.add('flip' ,  `card-back${num}`);
-        num = num - 2;
-
-}
-
-
-
 
 
 
@@ -159,47 +128,5 @@ resetButton.addEventListener('click', (e) => {
 
 newGameButton.addEventListener('click', (e) => {
     console.log("reset btn was clicked");
-    // Reload the page
-    let something = 1;
-
-    // Check if 'something' is already stored in localStorage
-    const storedValue = localStorage.getItem('something');
-
-    // If storedValue is not null, use it; otherwise, use the initial value
-    something = storedValue !== null ? parseInt(storedValue) : something;
-
-    console.log(something);
-
-    something++;
-
-    if(something >= 10){
-        localStorage.setItem('something',1)
-    }
-    else{
-        localStorage.setItem('something', something.toString());
-    }
-    
-    location.reload();
 
 });
-
-
-
-
-
-
-
-// let random_no = Math.floor(Math.random() * 12) + 1 ;
-
-//         while(1){                                          //So that we do not repeat that same no. again
-//             if(!repeat.includes(random_no)){
-
-//                 console.log("clicked" , random_no);
-            
-//                 clicked_card.add('flip' , 'card-back' ,`card-back${random_no}`);
-
-//                 flipped_cards.push(clicked_card.value);
-//                 break;
-//             }
-//             random_no = Math.floor(Math.random() * 12) + 1 ;
-//         }
