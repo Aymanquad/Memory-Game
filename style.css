@@ -46,15 +46,13 @@ body {
     transform-style: preserve-3d;
     transition: transform 0.5s;
     transform-origin: center;
-
-    /* transform: rotateY(180deg); */
 }
 
 .flip-card {
     transform: rotateY(180deg);
 }
 
-.card-front , .card-back{
+.card-front {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -121,14 +119,8 @@ body {
     background: url('https://static.vecteezy.com/system/resources/thumbnails/026/971/084/small/biryani-or-biryani-is-a-popular-indian-dish-made-of-basmati-rice-cooked-with-spices-and-vegetables-free-photo.jpg');
 }
 
-.card-back1 h3{
-    display: none;
-}
 
 /* ------------------     --------------- */
-
-
-
 
 h3 {
     position: absolute;
@@ -137,8 +129,6 @@ h3 {
     margin-left: -63px;
     color: rgb(255, 255, 255);
 }
-
-
 button {
     
     padding: 10px 20px;
@@ -153,12 +143,7 @@ button {
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
     margin-top: 20px;
-    
 }
-
-
-
-
 @media screen and (max-width: 600px) {
     h3, button {
         position: static;
@@ -169,22 +154,14 @@ button {
     }
 }
 
-
-
 button:hover {
     background-color: #3498db;
     color: #ffffff;
 }
 
-.disappear{
-    display: none;
-}
-
-
 .flip {
     animation: flipAnimation 0.5s ease-in-out;
 }
-
 .reverse-flip {
     animation: reverseFlipAnimation 0.5s ease-in-out;
 }

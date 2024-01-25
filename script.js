@@ -8,7 +8,7 @@ let flipped_cards = [];
 let flipped_cards_data = [];
 
 
-const initial_cards = [...cards].map(card => card.cloneNode(true));
+//const initial_cards = [...cards].map(card => card.cloneNode(true));
 
 
 main_div.addEventListener('click' , (e)=>{
